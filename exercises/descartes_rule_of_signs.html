@@ -32,6 +32,12 @@ function getMaxNegativeRoots(a) {
   }
   return getMaxPositiveRoots(aPrime);
 }
+
+// Given the polynomial a[i] x^i, computes the minimum number of complex
+// roots it can have according to Descartes' rule of signs.
+function getMinComplexRoots(a) {
+  return a.length - 1 - getMaxPositiveRoots(a) - getMaxNegativeRoots(a);
+}
           </script>
       </head>
       <body>
@@ -45,6 +51,7 @@ function getMaxNegativeRoots(a) {
                   <var id="A">[A0, A1, A2, A3, A4]</var>
                   <var id="MAX_POSITIVE_ROOTS">getMaxPositiveRoots(A)</var>
                   <var id="MAX_NEGATIVE_ROOTS">getMaxNegativeRoots(A)</var>
+                  <var id="MIN_COMPLEX_ROOTS">getMinComplexRoots(A)</var>
               </div>
 
               <div class="problems">
@@ -60,6 +67,11 @@ function getMaxNegativeRoots(a) {
                   <div id="max-negative-roots" data-type="main-problem">
                       <p class="question">What is the maximum number of negative roots of <code>f(x)</code>?</p>
                       <p class="solution" data-type="text"><var>MAX_NEGATIVE_ROOTS</var></p>
+                  </div>
+
+                  <div id="max-negative-roots" data-type="main-problem">
+                      <p class="question">What is the minimum number of complex roots of <code>f(x)</code>?</p>
+                      <p class="solution" data-type="text"><var>MIN_COMPLEX_ROOTS</var></p>
                   </div>
               </div>
 
