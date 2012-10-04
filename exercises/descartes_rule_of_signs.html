@@ -65,12 +65,8 @@ function getMinComplexRoots(a) {
       <body>
           <div class="exercise">
               <div class="vars">
-                  <var id="A0">randRangeNonZero(-10, 10)</var>
-                  <var id="A1">randRangeNonZero(-10, 10)</var>
-                  <var id="A2">randRangeNonZero(-10, 10)</var>
-                  <var id="A3">randRangeNonZero(-10, 10)</var>
-                  <var id="A4">randRangeNonZero(-10, 10)</var>
-                  <var id="A">[A0, A1, A2, A3, A4]</var>
+                  <var id="DEGREE">randRange(2, 6)</var>
+                  <var id="A">randRange(-10, 10, DEGREE + 1)</var>
                   <var id="A_STR">getPolynomialString(A)</var>
                   <var id="MAX_POSITIVE_ROOTS">getMaxPositiveRoots(A)</var>
                   <var id="MAX_NEGATIVE_ROOTS">getMaxNegativeRoots(A)</var>
