@@ -3,6 +3,23 @@
       <head>
           <title>Descartes' rule of signs</title>
           <script src="../khan-exercise.js"></script>
+          <script>
+// Given the polynomial a[i] x^i, computes the maximum number of positive
+// roots it can have according to Descartes' rule of signs.
+function getMaxPositiveRoots(a) {
+  var sign = +1;
+  var signChanges = 0;
+  for (var i = a.length - 1; i >= 0; --i) {
+    if (a[i] == 0) continue;
+    var aSign = (a[i] > 0) ? +1 : -1;
+    if (aSign != sign) {
+      sign = aSign;
+      ++signChanges;
+    }
+  }
+  return signChanges;
+}
+          </script>
       </head>
       <body>
           <div class="exercise">
@@ -12,6 +29,7 @@
                   <var id="A2">randRangeNonZero(-10, 10)</var>
                   <var id="A3">randRangeNonZero(-10, 10)</var>
                   <var id="A4">randRangeNonZero(-10, 10)</var>
+                  <var id="MAX_POSITIVE_ROOTS">getMaxPositiveRoots([A0, A1, A2, A3, A4])</var>
               </div>
 
               <div class="problems">
@@ -21,7 +39,7 @@
                                    <var>A2</var>x^2 + <var>A1</var>x +
                                    <var>A0</var></code>.</p>
                       <p class="question">What is the maximum number of positive roots of <code>f(x)</code>?</p>
-                      <p class="solution"><!-- The correct answer expected of the student. --></p>
+                      <p class="solution" data-type="text"><var>MAX_POSITIVE_ROOTS</var></p>
                   </div>
               </div>
 
