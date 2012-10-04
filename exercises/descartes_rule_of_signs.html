@@ -19,6 +19,19 @@ function getMaxPositiveRoots(a) {
   }
   return signChanges;
 }
+
+// Given the polynomial a[i] x^i, computes the maximum number of negative
+// roots it can have according to Descartes' rule of signs.
+function getMaxNegativeRoots(a) {
+  // Flip the sign of odd-power terms.
+  var aPrime = a.slice();
+  for (var i = 0; i < aPrime.length; ++i) {
+    if (i % 2 != 0) {
+      aPrime[i] *= -1;
+    }
+  }
+  return getMaxPositiveRoots(aPrime);
+}
           </script>
       </head>
       <body>
@@ -29,17 +42,24 @@ function getMaxPositiveRoots(a) {
                   <var id="A2">randRangeNonZero(-10, 10)</var>
                   <var id="A3">randRangeNonZero(-10, 10)</var>
                   <var id="A4">randRangeNonZero(-10, 10)</var>
-                  <var id="MAX_POSITIVE_ROOTS">getMaxPositiveRoots([A0, A1, A2, A3, A4])</var>
+                  <var id="A">[A0, A1, A2, A3, A4]</var>
+                  <var id="MAX_POSITIVE_ROOTS">getMaxPositiveRoots(A)</var>
+                  <var id="MAX_NEGATIVE_ROOTS">getMaxNegativeRoots(A)</var>
               </div>
 
               <div class="problems">
-                  <div id="problem-type-or-description">
+                  <div id="main-problem">
                       <p class="problem">Let
                       <code>f(x) = <var>A4</var>x^4 + <var>A3</var>x^3 +
                                    <var>A2</var>x^2 + <var>A1</var>x +
                                    <var>A0</var></code>.</p>
                       <p class="question">What is the maximum number of positive roots of <code>f(x)</code>?</p>
                       <p class="solution" data-type="text"><var>MAX_POSITIVE_ROOTS</var></p>
+                  </div>
+
+                  <div id="max-negative-roots" data-type="main-problem">
+                      <p class="question">What is the maximum number of negative roots of <code>f(x)</code>?</p>
+                      <p class="solution" data-type="text"><var>MAX_NEGATIVE_ROOTS</var></p>
                   </div>
               </div>
 
