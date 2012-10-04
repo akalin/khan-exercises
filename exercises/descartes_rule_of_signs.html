@@ -1,39 +1,18 @@
  <!DOCTYPE html>
-  <html data-require="math">
+  <html data-require="math math-format polynomials">
       <head>
           <title>Descartes' rule of signs</title>
           <script src="../khan-exercise.js"></script>
           <script>
-// Returns a printable string for the polynomial a[i] x^i. Code tags are not
-// included in the string.
-function getPolynomialString(a) {
-  var str = "";
-  for (var i = a.length - 1; i >= 0; --i) {
-    var ai = a[i];
-    if (ai == 0) continue;
-    var signStr = "";
-    if (ai < 0) {
-      signStr = "-";
-    } else if (ai > 0 && str != "") {
-      signStr = "+";
-    }
-    var aiAbs = Math.abs(ai);
-    var aiAbsStr = (aiAbs == 1 && i > 0) ? "" : aiAbs;
-    var xiStr = (i > 0) ? ("x^" + i) : "";
-    str += signStr + aiAbsStr + xiStr;
-  }
-  if (str == "") str = "0";
-  return str;
-}
-
-// Given the polynomial a[i] x^i, computes the maximum number of positive
+// Given the polynomial p, computes the maximum number of positive
 // roots it can have according to Descartes' rule of signs.
-function getMaxPositiveRoots(a) {
+function getMaxPositiveRoots(p) {
   var sign = +1;
   var signChanges = 0;
-  for (var i = a.length - 1; i >= 0; --i) {
-    if (a[i] == 0) continue;
-    var aSign = (a[i] > 0) ? +1 : -1;
+  for (var i = p.coefs.length - 1; i >= 0; --i) {
+    var ai = p.coefs[i];
+    if (ai == 0) continue;
+    var aSign = (ai > 0) ? +1 : -1;
     if (aSign != sign) {
       sign = aSign;
       ++signChanges;
@@ -42,41 +21,42 @@ function getMaxPositiveRoots(a) {
   return signChanges;
 }
 
-// Given the polynomial a[i] x^i, computes the maximum number of negative
-// roots it can have according to Descartes' rule of signs.
-function getMaxNegativeRoots(a) {
+// Given the polynomial p, returns the polynomial resulting from negating its
+// variable.
+function negateVariable(p, name) {
   // Flip the sign of odd-power terms.
-  var aPrime = a.slice();
-  for (var i = 0; i < aPrime.length; ++i) {
+  var coefs = p.coefs.slice();
+  for (var i = 0; i < coefs.length; ++i) {
     if (i % 2 != 0) {
-      aPrime[i] *= -1;
+      coefs[i] *= -1;
     }
   }
-  return getMaxPositiveRoots(aPrime);
+  return new KhanUtil.Polynomial(p.minDegree, p.maxDegree, coefs, p.variable, name);
 }
 
-// Given the polynomial a[i] x^i, computes the minimum number of complex
-// roots it can have according to Descartes' rule of signs.
-function getMinComplexRoots(a) {
-  return a.length - 1 - getMaxPositiveRoots(a) - getMaxNegativeRoots(a);
+// Given the polynomial p and q = negateVariable(p), computes the minimum
+// number of complex roots it can have according to Descartes' rule of signs.
+function getMinComplexRoots(p, q) {
+  return Math.max(0, p.findMaxDegree() - getMaxPositiveRoots(p) - getMaxPositiveRoots(q));
 }
           </script>
       </head>
       <body>
           <div class="exercise">
               <div class="vars">
-                  <var id="DEGREE">randRange(2, 6)</var>
-                  <var id="A">randRange(-10, 10, DEGREE + 1)</var>
-                  <var id="A_STR">getPolynomialString(A)</var>
-                  <var id="MAX_POSITIVE_ROOTS">getMaxPositiveRoots(A)</var>
-                  <var id="MAX_NEGATIVE_ROOTS">getMaxNegativeRoots(A)</var>
-                  <var id="MIN_COMPLEX_ROOTS">getMinComplexRoots(A)</var>
+                  <var id="X">randVar()</var>
+                  <var id="MAX_DEGREE">randRange(2, 6)</var>
+                  <var id="P">new Polynomial(0, MAX_DEGREE, null, X, "p")</var>
+                  <var id="Q">negateVariable(P, "q")</var>
+                  <var id="MAX_POSITIVE_ROOTS">getMaxPositiveRoots(P)</var>
+                  <var id="MAX_NEGATIVE_ROOTS">getMaxPositiveRoots(Q)</var>
+                  <var id="MIN_COMPLEX_ROOTS">getMinComplexRoots(P, Q)</var>
               </div>
 
               <div class="problems">
                   <div id="main-problem">
                       <p class="problem">Let
-                      <code>f(x) = <var>A_STR</var></code>.</p>
+                      <code>f(x) = <var>P</var></code>.</p>
                       <p class="question">What is the maximum number of positive roots <code>f(x)</code> can have?</p>
                       <p class="solution" data-type="text"><var>MAX_POSITIVE_ROOTS</var></p>
                   </div>
