@@ -60,6 +60,7 @@ function getMinComplexRoots(p, q) {
                   <var id="Q">negateVariable(P, "q")</var>
                   <var id="MAX_POSITIVE_ROOTS">getMaxPositiveRoots(P)</var>
                   <var id="MAX_NEGATIVE_ROOTS">getMaxPositiveRoots(Q)</var>
+                  <var id="ZERO_ROOT_MULTIPLICITY">getZeroRootMultiplicity(P)</var>
                   <var id="MIN_COMPLEX_ROOTS">getMinComplexRoots(P, Q)</var>
               </div>
 
@@ -81,9 +82,12 @@ function getMinComplexRoots(p, q) {
                       <p class="solution" data-type="text"><var>MIN_COMPLEX_ROOTS</var></p>
                   </div>
               </div>
-
               <div class="hints">
-                  <!-- Any hints to show to the student. -->
+                  <p>A negative leading coefficient does not count as a sign change.</p>
+                  <p>A negative root of <code>p(x)</code> is a positive root of <code>p(-x)</code>.</p>
+                  <p>A root is either real or complex.</p>
+                  <p>A real root is positive, negative, or zero.</p>
+                  <p><code>f(x)</code> has 0 as a root <var>ZERO_ROOT_MULTIPLICITY</var> time(s), at most <var>MAX_POSITIVE_ROOTS</var> positive root(s), at most <var>MAX_NEGATIVE_ROOTS</var> negative root(s), and at least <var>MIN_COMPLEX_ROOTS</var> complex root(s).</p>
               </div>
           </div>
       </body>
