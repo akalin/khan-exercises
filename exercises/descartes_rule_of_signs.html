@@ -38,7 +38,10 @@
                       <p class="solution" data-type="text"><var>MAX_NEGATIVE_ROOTS</var></p>
 
                       <div class="hints">
-                  <p>A negative root of <code>p(x)</code> is a positive root of <code>p(-x)</code>.</p>
+                        <p>A negative root of <code>f(x)</code> is a positive root of <code>f(-x)</code>.</p>
+                        <p>To find <code>f(-x)</code>, flip the sign of every coefficient of an odd degree.</p>
+                        <p><code>f(-x) = <var>Q</var></code>.</p>
+                        <p><code>f(x)</code> has at most <var>plural(MAX_NEGATIVE_ROOTS, "negative root")</var>.</p>
                       </div>
                   </div>
 
