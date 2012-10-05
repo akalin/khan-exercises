@@ -50,9 +50,13 @@
                       <p class="solution" data-type="text"><var>MIN_COMPLEX_ROOTS</var></p>
 
                       <div class="hints">
-                  <p>A root is either real or complex.</p>
-                  <p>A real root is positive, negative, or zero.</p>
-                  <p><code>f(x)</code> has 0 as a root <var>ZERO_ROOT_MULTIPLICITY</var> time(s), at most <var>MAX_POSITIVE_ROOTS</var> positive root(s), at most <var>MAX_NEGATIVE_ROOTS</var> negative root(s), and at least <var>MIN_COMPLEX_ROOTS</var> complex root(s).</p>
+                        <p>A root is either real or complex.</p>
+                        <p>A real root can be positive, negative, or zero.</p>
+                        <p>A polynomial of degree <code>n</code> has exactly <code>n</code> roots (some of which may be the same).</p>
+                        <p><code>f(x)</code> has at most <var>plural(MAX_POSITIVE_ROOTS, "positive root")</var>.</p>
+                        <p><code>f(x)</code> has at most <var>plural(MAX_NEGATIVE_ROOTS, "negative root")</var>.</p>
+                        <p><code>f(x)</code> has 0 as a root <var>plural(ZERO_ROOT_MULTIPLICITY, "time")</var>.</p>
+                        <p><code>f(x)</code> has at least <var>plural(MIN_COMPLEX_ROOTS, "complex root")</var>.</p>
                       </div>
                   </div>
               </div>
