@@ -7,9 +7,14 @@
 // Given the polynomial p, computes the maximum number of positive
 // roots it can have according to Descartes' rule of signs.
 function getMaxPositiveRoots(p) {
-  var sign = +1;
+  if (p.coefs.length == 0) {
+    return 0;
+  }
+  var minDegree = p.findMinDegree();
+  var maxDegree = p.findMaxDegree();
+  var sign = (p.coefs[minDegree] > 0) ? +1 : -1;
   var signChanges = 0;
-  for (var i = p.coefs.length - 1; i >= 0; --i) {
+  for (var i = minDegree + 1; i <= maxDegree; ++i) {
     var ai = p.coefs[i];
     if (ai == 0) continue;
     var aSign = (ai > 0) ? +1 : -1;
