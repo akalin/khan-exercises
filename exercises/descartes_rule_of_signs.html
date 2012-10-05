@@ -4,6 +4,11 @@
           <title>Descartes' rule of signs</title>
           <script src="../khan-exercise.js"></script>
           <script>
+// Returns the number of times 0 is a root of the given polynomial.
+function getZeroRootMultiplicity(p) {
+  return p.findMinDegree();
+}
+
 // Given the polynomial p, computes the maximum number of positive
 // roots it can have according to Descartes' rule of signs.
 function getMaxPositiveRoots(p) {
@@ -42,7 +47,7 @@ function negateVariable(p, name) {
 // Given the polynomial p and q = negateVariable(p), computes the minimum
 // number of complex roots it can have according to Descartes' rule of signs.
 function getMinComplexRoots(p, q) {
-  return p.findMaxDegree() - getMaxPositiveRoots(p) - getMaxPositiveRoots(q);
+  return p.findMaxDegree() - getMaxPositiveRoots(p) - getMaxPositiveRoots(q) - getZeroRootMultiplicity(p);
 }
           </script>
       </head>
