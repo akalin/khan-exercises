@@ -42,7 +42,7 @@ function negateVariable(p, name) {
 // Given the polynomial p and q = negateVariable(p), computes the minimum
 // number of complex roots it can have according to Descartes' rule of signs.
 function getMinComplexRoots(p, q) {
-  return Math.max(0, p.findMaxDegree() - getMaxPositiveRoots(p) - getMaxPositiveRoots(q));
+  return p.findMaxDegree() - getMaxPositiveRoots(p) - getMaxPositiveRoots(q);
 }
           </script>
       </head>
